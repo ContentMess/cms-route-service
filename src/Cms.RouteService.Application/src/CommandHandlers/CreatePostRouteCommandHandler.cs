@@ -2,8 +2,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Cms.RouteService.Application.CommandHandlers.Interfaces;
 using Cms.RouteService.Application.Contracts.Commands;
+using Cms.RouteService.Application.Factories;
 using Cms.RouteService.Domain.Entities;
-using Cms.RouteService.Domain.Factories;
 using Cms.RouteService.Infrastructure.Persistence.UnitOfWork.Interfaces;
 
 namespace Cms.RouteService.Application.CommandHandlers;

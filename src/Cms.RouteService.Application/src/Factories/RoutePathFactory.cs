@@ -1,6 +1,6 @@
 using NanoidDotNet;
 
-namespace Cms.RouteService.Domain.Factories;
+namespace Cms.RouteService.Application.Factories;
 
 public static class RoutePathFactory
 {

@@ -2,8 +2,6 @@ using System;
 using Cms.RouteService.Infrastructure.Persistence;
 using Cms.RouteService.Infrastructure.Persistence.UnitOfWork;
 using Cms.RouteService.Infrastructure.Persistence.UnitOfWork.Interfaces;
-using Cms.RouteService.Infrastructure.Services;
-using Cms.RouteService.Infrastructure.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
@@ -23,16 +21,6 @@ public static class DependencyInjection
 
         services.AddDbContext(configuration);
         services.AddScoped<IUnitOfWork, UnitOfWork>();
-    }
-
-    public static void AddCliInfrastructure(
-        this IServiceCollection services,
-        IConfiguration configuration
-    )
-    {
-        services.AddDbContext(configuration);
-
-        services.AddScoped<IPersistenceService, PersistenceService>();
     }
 
     public static void AddDbContext(this IServiceCollection services, IConfiguration configuration)
