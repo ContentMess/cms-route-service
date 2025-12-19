@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0-alpine AS build-env
 ARG NUGET_USER
 ARG NUGET_PASSWORD
 
-RUN dotnet nuget add source "https://nuget.pkg.github.com/clcl0n/index.json" --name Github --username $NUGET_USER --password $NUGET_PASSWORD --store-password-in-clear-text
+RUN dotnet nuget add source "https://nuget.pkg.github.com/contentmess/index.json" --name ContentMess --username $NUGET_USER --password $NUGET_PASSWORD --store-password-in-clear-text
 
 WORKDIR /App
 
@@ -11,7 +11,7 @@ WORKDIR /App
 COPY ./src .
 
 # Build Api
-WORKDIR /App/Cms.RouteService./Api/src
+WORKDIR /App/Cms.RouteService.Api/src
 
 # Build and publish a release
 RUN dotnet publish -c Release -o out

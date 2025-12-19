@@ -1,0 +1,31 @@
+name: Build Image using Containerfile
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  build-and-publish:
+    uses: ContentMess/cms-workflows/.github/workflows/publish-image.yaml@main
+    with:
+      image_name: cms-route-service
+      containerfile_path: api.Dockerfile
+      tags: latest ${{ github.ref_name }}
+  deploy:
+    uses: ContentMess/cms-workflows/.github/workflows/deploy-image.yaml@main
+    needs: build-and-publish
+    with:
+      chart_registry: oci://ghcr.io/contentmess/cms-route-service-chart
+      release_name: cms-route-service
+      namespace: cms
+      cluster_name: content-mess
+      helm_sets: |
+        --set spec.replicas=1 \
+        --set configuration.environment=production \
+        --set metadata.namespace=cms \
+        --set configuration.otel.exporterOtlpEndpoint=http://otel-collector-opentelemetry-collector:4317 \
+        --set configuration.connectionStrings.postgres=postgresql://postgres:postgres@postgres-cluster-pooler.postgres-cluster:5432/cms?sslmode=disable \
+        --set spec.template.spec.image=ghcr.io/contentmess/cms-route-service:${{ github.ref_name }} \
+    secrets:
+      digitalocean_token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}

@@ -1,5 +1,4 @@
 using Cms.Shared.Constants;
-using Cms.Shared.Setups;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -13,7 +12,6 @@ public static class HealthCheckSetup
     )
     {
         builder
-            .AddRabbitMQ(configuration)
             .AddApplicationLifecycleHealthCheck([HealthCheckTag.StartupTag]);
     }
 }
