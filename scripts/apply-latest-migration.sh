@@ -1,0 +1,1 @@
+dotnet ef --startup-project ../src/Cms.RouteService.Api/src database update

@@ -1,9 +1,8 @@
-FROM mcr.microsoft.com/dotnet/sdk:9.0-alpine AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:10.0-alpine AS build-env
 
 ARG NUGET_USER
-ARG NUGET_PASSWORD
 
-RUN dotnet nuget add source "https://nuget.pkg.github.com/contentmess/index.json" --name ContentMess --username $NUGET_USER --password $NUGET_PASSWORD --store-password-in-clear-text
+RUN dotnet nuget add source "https://nuget.pkg.github.com/contentmess/index.json" --name ContentMess --username $NUGET_USER
 
 WORKDIR /App
 
@@ -16,7 +15,7 @@ WORKDIR /App/Cms.RouteService.Api/src
 # Build and publish a release
 RUN dotnet publish -c Release -o out
 
-FROM mcr.microsoft.com/dotnet/aspnet:9.0-alpine as runtime-env
+FROM mcr.microsoft.com/dotnet/aspnet:10.0-alpine AS runtime-env
 
 WORKDIR /App
 
