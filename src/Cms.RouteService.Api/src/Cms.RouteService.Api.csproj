@@ -37,8 +37,8 @@
     <PackageReference Include="Microsoft.CodeAnalysis.Scripting.Common" Version="5.0.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.Scripting" Version="5.0.0" />
 
-    <PackageReference Include="Cms.Shared" Version="1.0.0" />
-    <PackageReference Include="Cms.Protos" Version="1.0.0" />
+    <PackageReference Include="Cms.Shared" Version="1.1.0" />
+    <PackageReference Include="Cms.Protos" Version="1.1.0" />
   </ItemGroup>
 
 </Project>
