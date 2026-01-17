@@ -1,8 +1,13 @@
 FROM mcr.microsoft.com/dotnet/sdk:10.0-alpine AS build-env
 
 ARG NUGET_USER
+ARG NUGET_PASSWORD
 
-RUN dotnet nuget add source "https://nuget.pkg.github.com/contentmess/index.json" --name ContentMess --username $NUGET_USER
+RUN dotnet nuget add source "https://nuget.pkg.github.com/contentmess/index.json" \
+    --name ContentMess \
+    --username $NUGET_USER \
+    --password $NUGET_PASSWORD \
+    --store-password-in-clear-text
 
 WORKDIR /App
 
